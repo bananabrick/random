@@ -1,0 +1,12 @@
+// create 100k files, write 2mb in each file, sync each file, sync parent directory once.
+// Then, delete 100k files by calling `os.Remove` on each file. 
+____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
+    custom       1s            3.7         3138.1      0.3      0.4      0.6      1.7
+    custom       2s         3259.2         3198.5      0.3      0.4      0.5      1.4
+    custom       3s        38553.7        14982.5      0.0      0.1      0.3      1.2
+
+____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
+    custom     3.9s         100000        25467.6      0.0      0.0      0.3      0.4      1.7
+
+fsbench/custom  100000 25467.6 ops/sec
+

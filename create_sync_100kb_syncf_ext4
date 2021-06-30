@@ -1,3 +1,4 @@
+// create, write 100kb, sync, sync dir
 ____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
     custom       1s          356.2          357.1      2.6      4.2      5.8     10.5
     custom       2s          354.0          355.5      2.8      4.7      5.8      6.3
