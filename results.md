@@ -74,7 +74,7 @@ Comparison:
     1. 10k 2MB files were created outside the timer.
     2. Then deletion performance was measured for each file.
     3. The benchmark was repeated three times on each file system.
-    4. The benchmark was run for 600 seconds on each run.
+    4. The benchmark was run until all 10k files were deleted.
 - Results:
 1. ext4 results from all three runs of the benchmark.
 ```
@@ -116,7 +116,7 @@ Comparison:
     1. 100k 2MB files were created outside the timer.
     2. Then deletion performance was measured for each file.
     3. The benchmark was repeated three times on each file system.
-    4. The benchmark was run for 600 seconds on each run.
+    4. The benchmark was run until all 100k files were deleted.
 - Results:
 1. ext4 results from all three runs of the benchmark.
 ```
@@ -218,7 +218,7 @@ compared to 55.1 seconds in the case of zfs. This suggests that deletions on zfs
     2. Then deletion performance was measured for each file.
     3. This benchmark was only run on ext4, as ext4 deletions didn't hit steady state in the previous benchmarks.
     4. The benchmark was repeated three times.
-    5. The benchmark was run for 600 seconds on each run.
+    5. The benchmark was run until all 200k files were deleted.
 - Results:
 1. ext4 results from all three runs of the benchmark.
 ```
