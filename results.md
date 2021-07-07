@@ -1,179 +1,141 @@
-**zfs vs ext4 benchmarking results**
+# zfs vs ext4 benchmarking results
 
 - Note that a non-local ssd(over the network) was used for each of these benchmarks.
-- The benchmarks were run on the same computer/drive.
+- All benchmarks aren't run on the same machine/drive, but the corresponding zfs/ext4
+  benchmarks are run on the same computer/drive.
 
-**Benchmark 1:** Creating empty files(create_empty).
+## Benchstat results
+```
+name                            ext4 ops/sec  zfs ops/sec  delta
+fsbench/create_empty               672 ± 5%    1117 ± 7%   ~     (p=0.100 n=3+3)
+fsbench/delete_10k_2MB           5.31k ± 7%   2.42k ±18%   ~     (p=0.100 n=3+3)
+fsbench/delete_100k_2MB          30.5k ± 1%    1.8k ± 1%   ~     (p=0.100 n=3+3)
+fsbench/delete_10k_2k_200MB        722 ±33%     563 ± 1%   ~     (p=0.700 n=3+3)
+fsbench/write_sync_10MB           30.4 ± 3%    27.1 ± 1%   ~     (p=0.100 n=3+3)
+fsbench/delete_small_dir_2MB     15.6k ±14%    6.8k ±16%   ~     (p=0.100 n=3+3)
+fsbench/delete_small_dir_200MB   18.5k ±25%    1.3k ± 6%   ~     (p=0.100 n=3+3)
+fsbench/delete_large_dir_2MB     30.8k ±14%    8.5k ±29%   ~     (p=0.100 n=3+3)
+fsbench/delete_large_dir_200MB   22.3k ±12%    6.9k ± 8%   ~     (p=0.100 n=3+3)
+```
+
+## Creates
+
+**Benchmark 1:** Creating empty files.
+- Name: create_empty
 - Methodology:
     1. Create an empty file, sync the parent directory, and measure the latency of the entire create + sync operations.
     2. The benchmark was run for 600 seconds to measure creation times in both small/large directories.
     3. The benchmark was repeated three times on each file system.
+    4. The benchmark was run for 600 seconds on each run.
 - Results:
 1. ext4 results from each run of the benchmark.
 ```
+1.
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
 create_emp   600.0s         386438          644.1      1.6      1.6      2.0      2.5     67.1
 
+2.
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
 create_emp   600.0s         400131          666.9      1.5      1.5      1.9      2.5    335.5
 
+3.
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
 create_emp   600.0s         422736          704.6      1.4      1.4      1.8      2.4    369.1
 ```
-- There was no measurable change in throughput or latencies over the 600 seconds.
+- There was no measurable change in throughput or latencies over the 600 seconds(as directory size grew).
 - Around ~360k files were created over 600 seconds.
 
 2. zfs results from each run of the benchmark.
 ```
+1.
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
 create_emp   600.0s         626378         1044.0      1.0      1.0      1.2      1.4     56.6
 
+2.
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
 create_emp   600.0s         664861         1108.1      0.9      0.9      1.1      1.4     88.1
 
+3.
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
 create_emp   600.0s         718886         1198.1      0.8      0.8      1.0      1.8    130.0
 ```
-- There was no measurable change in throughput or latencies over the 600 seconds.
+- There was no measurable change in throughput or latencies over the 600 seconds(as directory size grew).
 - Around ~600k files were created over 600 seconds.
 
 Comparison:
 - zfs seems to have higher throughput and lower latencies for file creations + sync.
-- The benchmark was repeated thrice on each file system.
 
-**Benchmark 2:** Create 10k 2MB files, then measure the deletion times of each file(delete_10k_2MB).
+## Delete pre-existing
+- Delete pre-existing files
+
+**Benchmark 2:** Create 10k 2MB files, then measure the deletion times of each file.
+- Name: delete_10k_2MB
 - Methodology:
     1. 10k 2MB files were created outside the timer.
     2. Then deletion performance was measured for each file.
+    3. The benchmark was repeated three times on each file system.
+    4. The benchmark was run for 600 seconds on each run.
 - Results:
 1. ext4 results from all three runs of the benchmark.
 ```
-Running benchmark: delete_10k_2MB
-Description: create 10k 2MB size files, measure deletion times
-____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k       1s           49.8         4082.4      0.2      0.3      0.4      1.5
-
+1.
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
 delete_10k     1.8s          10000         5657.3      0.2      0.2      0.3      0.3      1.5
 
-fsbench/delete_10k_2MB  10000 5657.3 ops/sec
-
-Running benchmark: delete_10k_2MB
-Description: create 10k 2MB size files, measure deletion times
-____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k       1s           44.6         3677.1      0.3      0.3      0.4      1.2
-delete_10k       2s         6060.8         4868.2      0.2      0.3      0.4      0.7
-
+2.
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
 delete_10k     2.0s          10000         4988.0      0.2      0.2      0.3      0.4      1.2
 
-fsbench/delete_10k_2MB  10000 4988.0 ops/sec
-
-Running benchmark: delete_10k_2MB
-Description: create 10k 2MB size files, measure deletion times
-____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k       1s           46.0         3791.1      0.3      0.3      0.4      1.2
-
+3.
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
 delete_10k     1.9s          10000         5275.4      0.2      0.2      0.3      0.4      1.2
-
-fsbench/delete_10k_2MB  10000 5275.4 ops/sec
 ```
 - The deletions happen really fast, before the deletion throughput reaches a steady state.
 2. zfs results from all three runs of the benchmark.
 ```
-Running benchmark: delete_10k_2MB
-Description: create 10k 2MB size files, measure deletion times
-____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k       1s           56.7         4870.2      0.1      0.5      0.7      6.0
-delete_10k       2s         2083.0         3472.1      0.4      0.7      1.5      7.9
-delete_10k       3s         1926.7         2956.2      0.5      0.7      1.5      4.7
-
+1.
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
 delete_10k     3.6s          10000         2770.2      0.4      0.4      0.7      1.1      7.9
 
-fsbench/delete_10k_2MB  10000 2770.2 ops/sec
-
-Running benchmark: delete_10k_2MB
-Description: create 10k 2MB size files, measure deletion times
-____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k       1s           27.4         2338.6      0.4      0.6      1.4    100.7
-delete_10k       2s         1914.5         2126.6      0.5      0.7      1.6      5.0
-delete_10k       3s         1862.0         2038.4      0.5      0.8      1.0      2.9
-delete_10k       4s         1905.5         2005.2      0.5      0.7      0.9      3.0
-delete_10k       5s         1925.6         1989.3      0.5      0.7      0.9      5.0
-
+2.
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
 delete_10k     5.0s          10000         1989.1      0.5      0.5      0.7      1.1    100.7
 
-fsbench/delete_10k_2MB  10000 1989.1 ops/sec
-
-Running benchmark: delete_10k_2MB
-Description: create 10k 2MB size files, measure deletion times
-____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k       1s           47.0         4012.3      0.1      0.6      0.7      3.4
-delete_10k       2s         2110.7         3061.2      0.5      0.7      0.8      3.8
-delete_10k       3s         1965.8         2696.3      0.5      0.7      0.9      2.4
-
+3.
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
 delete_10k     4.0s          10000         2507.4      0.4      0.4      0.7      0.8      4.1
-
-fsbench/delete_10k_2MB  10000 2507.4 ops/sec
 ```
 - The deletions happen very fast, before the deletion throughput reaches a steady state.
 
 Comparison:
 - Difficult to compare since deletes didn't reach a steady state.
 
-**Benchmark 3:** Create 100k 2MB files, then measure the deletion times of each file(delete_100K_2MB).
+**Benchmark 3:** Create 100k 2MB files, then measure the deletion times of each file.
+- Name: delete_100K_2MB
 - Methodology:
     1. 100k 2MB files were created outside the timer.
     2. Then deletion performance was measured for each file.
+    3. The benchmark was repeated three times on each file system.
+    4. The benchmark was run for 600 seconds on each run.
 - Results:
 1. ext4 results from all three runs of the benchmark.
 ```
-Running benchmark: delete_100k_2MB
-Description: create 100k 2MB size files, measure deletion times
-____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_100       1s            4.8         3934.9      0.3      0.3      0.4      1.3
-delete_100       2s        11192.7         7564.8      0.0      0.3      0.3      0.9
-delete_100       3s        65339.3        26824.1      0.0      0.0      0.0      0.4
-
+1.
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
 delete_100     3.3s         100000        30400.5      0.0      0.0      0.2      0.3      1.3
 
-fsbench/delete_100k_2MB  100000 30400.5 ops/sec
-
-
-Running benchmark: delete_100k_2MB
-Description: create 100k 2MB size files, measure deletion times
-____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_100       1s            4.9         3965.5      0.3      0.3      0.4      1.3
-delete_100       2s        13960.3         8962.3      0.0      0.3      0.3      0.5
-delete_100       3s        64925.6        27613.0      0.0      0.0      0.0      0.3
-
+2.
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
 delete_100     3.2s         100000        30839.7      0.0      0.0      0.2      0.3      1.3
 
-fsbench/delete_100k_2MB  100000 30839.7 ops/sec
-
-
-Running benchmark: delete_100k_2MB
-Description: create 100k 2MB size files, measure deletion times
-____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_100       1s            4.7         3855.4      0.3      0.3      0.4      1.2
-delete_100       2s        10006.7         6929.6      0.0      0.3      0.4      0.6
-delete_100       3s        64538.3        26131.6      0.0      0.0      0.0      0.3
-
+3.
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
 delete_100     3.3s         100000        30263.3      0.0      0.0      0.2      0.3      1.2
-
-fsbench/delete_100k_2MB  100000 30263.3 ops/sec
 ```
-- Note that the deletion rate here is much higher than the deletion rate with only 10k 2MB files.
+- Note that the deletion rate here is much higher than the `delete_10k_2MB` benchmark.
 - This is because the benchmark has more time to hit a steady state, although 3 seconds is still too little.
 
-2. zfs results from one run of the benchmark(the other runs were similar).
+2. zfs results from one run of the benchmark.
 ```
 Running benchmark: delete_100k_2MB
 Description: create 100k 2MB size files, measure deletion times
@@ -249,257 +211,202 @@ Comparison:
 compared to 55.1 seconds in the case of zfs. This suggests that deletions on zfs are slower.
 
 
-**Benchmark 4:** Create 200k 2MB files, then measure the deletion times of each file(delete_200K_2MB).
+**Benchmark 4:** Create 200k 2MB files, then measure the deletion times of each file.
+- Name: delete_200K_2MB
 - Methodology:
     1. 200k 2MB files were created outside the timer.
     2. Then deletion performance was measured for each file.
     3. This benchmark was only run on ext4, as ext4 deletions didn't hit steady state in the previous benchmarks.
+    4. The benchmark was repeated three times.
+    5. The benchmark was run for 600 seconds on each run.
 - Results:
 1. ext4 results from all three runs of the benchmark.
 ```
-Running benchmark: delete_200k_2MB
-Description: create 200k 2MB size files, measure deletion times
-____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_200       1s            2.3         3788.6      0.3      0.3      0.4      1.2
-delete_200       2s         9670.8         6729.1      0.0      0.3      0.3      0.7
-delete_200       3s        60005.0        24484.1      0.0      0.0      0.0      0.3
-delete_200       4s        63186.7        34159.4      0.0      0.0      0.0      0.6
-
+1.
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
 delete_200     4.9s         200000        40421.6      0.0      0.0      0.0      0.3      1.2
 
-fsbench/delete_200k_2MB  200000 40421.6 ops/sec
-
-
-Running benchmark: delete_200k_2MB
-Description: create 200k 2MB size files, measure deletion times
-____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_200       1s            2.3         3772.5      0.3      0.3      0.4      0.5
-delete_200       2s         9953.2         6862.1      0.0      0.3      0.3      0.6
-delete_200       3s        57822.6        23844.6      0.0      0.0      0.0      2.8
-delete_200       4s        62177.3        33424.9      0.0      0.0      0.0      1.6
-delete_200       5s        65554.6        39856.2      0.0      0.0      0.0      5.0
-
+2.
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
 delete_200     5.0s         200000        39851.7      0.0      0.0      0.0      0.3      5.0
 
-fsbench/delete_200k_2MB  200000 39851.7 ops/sec
-
-
-Running benchmark: delete_200k_2MB
-Description: create 200k 2MB size files, measure deletion times
-____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_200       1s            2.3         3721.2      0.3      0.3      0.4      1.3
-delete_200       2s         3300.7         3511.0      0.3      0.4      0.4      0.5
-delete_200       3s        52281.3        19759.1      0.0      0.0      0.1      0.7
-delete_200       4s        63075.3        30592.6      0.0      0.0      0.0      1.6
-delete_200       5s        65038.9        37480.3      0.0      0.0      0.0      5.5
-
+3.
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
 delete_200     5.2s         200000        38511.9      0.0      0.0      0.0      0.3      5.5
-
-fsbench/delete_200k_2MB  200000 38511.9 ops/sec
 ```
 - Deletions still happen very fast, and deletion rates become even higher than the previous benchmarks.
 - 200k files were deleted in under 6 seconds.
+- Although, deletions still didn't hit a steady state, as 200000 finish deleting in ~5s.
 
 
-**Benchmark 5:** Create 100k 2MB files, then measure the deletion times of each file(delete_10k_2k_200MB).
+## Deletes
+- All the benchmarks in this section were run e2e on the same machine(without reformatting the fs b/w runs).
+- The benchmark order was, 9, 8, 7, 6.
+
+**Benchmark 6:** Measure deletion times of 2MB files in a small directory.(delete_small_dir_2MB).
+- Name: delete_small_dir_2MB
 - Methodology:
-    1. 8k 2MB, and 2k 200 MB files were created.
-    2. Then deletion performance was measured for each of the 2k 200MB files.
-    3. Note that 2000 2MB files is already 400GB of data.
+    1. Start the directory off with 1k 1MB, files, then create/delete 2MB files, while measuring deletion times.
+    2. The throughput numbers includes the file creation + file deletion operation, but the latency numbers only
+       include the file deletion operation. Average latency can be used to calculate deletion throughput.
+    3. The benchmark was repeated three times on each file system.
+    4. The benchmark was run for 600 seconds on each run.
+
 - Results:
-1. ext4 results from all three runs of the benchmark.
+1. ext4 results from each of the three runs of the benchmark.
 ```
-Running benchmark: delete_10k_2k_200MB
-Description: create 10k files, with 2k 200MB files, measure deletion times of 200MB files
-____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k       1s            1.0         1644.4      0.0      3.9      4.2     10.5
-delete_10k       2s          254.0          949.3      3.8      4.1      8.4     13.6
-delete_10k       3s           68.0          655.6     23.1     25.2     25.2     25.2
+____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
+delete_sma   600.0s          40001           66.7 0.05900 0.04096 0.05734 0.06553 75.49747
 
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k     3.8s           2000          529.4      1.9      0.0      4.2     24.1     25.2
-
-fsbench/delete_10k_2k_200MB  2000 529.4 ops/sec
-
-
-Running benchmark: delete_10k_2k_200MB
-Description: create 10k files, with 2k 200MB files, measure deletion times of 200MB files
-____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k       1s            1.1         1953.6      0.0      3.8     24.1     27.3
-delete_10k       2s           41.0          998.0     24.1     25.2     27.3     27.3
+delete_sma   600.1s          34865           58.1 0.07445 0.03277 0.05734 0.06553 96.46899
 
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k     2.1s           2000          963.2      1.0      0.0      3.9     24.1     27.3
-
-fsbench/delete_10k_2k_200MB  2000 963.2 ops/sec
-
-
-Running benchmark: delete_10k_2k_200MB
-Description: create 10k files, with 2k 200MB files, measure deletion times of 200MB files
-____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k       1s            1.0         1677.0      0.0      0.0      0.1    436.2
-delete_10k       2s          278.0          977.4      0.0      0.0      0.1   1476.4
-
-____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k     3.0s           2000          672.9      1.5      0.0      0.0     24.1   1476.4
-
-fsbench/delete_10k_2k_200MB  2000 672.9 ops/sec
+delete_sma   600.1s          33461           55.8 0.06068 0.03277 0.05734 0.06553 75.49747
 ```
-- The 2000 200MB files get deleted before the deletion throughput hits a steady state. 2000 files
-  get deleted in under 3 seconds.
 
-2. zfs results from all three runs of the benchmark.
+
+2. zfs results from each of the three runs of the benchmark.
 ```
-Running benchmark: delete_10k_2k_200MB
-Description: create 10k files, with 2k 200MB files, measure deletion times of 200MB files
-____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k       1s            0.3          685.8      1.3      2.5      5.0      9.4
-delete_10k       2s          571.1          628.2      1.4      2.5      6.3    159.4
-delete_10k       3s          519.9          592.1      1.3      2.5      5.5    268.4
+____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
+delete_sma   600.0s          58766           97.9 0.17491 0.07373 0.13107 0.21299 79.69178
 
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k     3.6s           2000          558.7      1.8      1.3      2.5      5.8    285.2
-
-fsbench/delete_10k_2k_200MB  2000 558.7 ops/sec
-
-
-Running benchmark: delete_10k_2k_200MB
-Description: create 10k files, with 2k 200MB files, measure deletion times of 200MB files
-____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k       1s            0.4          741.4      1.2      2.0      5.5      6.8
-delete_10k       2s          579.2          660.3      1.2      2.2      4.7    234.9
-delete_10k       3s          483.4          601.5      1.2      2.0      3.4    318.8
+delete_sma   600.0s          48210           80.3 0.13797 0.08192 0.13926 0.18022 83.88608
 
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k     3.5s           2000          570.3      1.8      1.2      2.2      5.0    318.8
-
-fsbench/delete_10k_2k_200MB  2000 570.3 ops/sec
-
-
-Running benchmark: delete_10k_2k_200MB
-Description: create 10k files, with 2k 200MB files, measure deletion times of 200MB files
-____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k       1s            0.4          738.4      1.2      1.7      5.8     10.0
-delete_10k       2s          562.5          650.5      1.2      1.6      3.1    285.2
-delete_10k       3s          503.0          601.3      1.3      1.6      3.7    335.5
-
-____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k     3.6s           2000          559.4      1.8      1.2      1.7      4.7    335.5
-
-fsbench/delete_10k_2k_200MB  2000 559.4 ops/sec
+delete_sma   600.1s          45617           76.0 0.13496 0.08192 0.13926 0.18841 83.88608
 ```
-- Deletions don't hit steady state.
 
 Comparison:
-- Both benchmarks seem to be unaffected by file size at least when there are only 10k files in the
-directory.
+- Deletes on ext4 are faster.
 
-**Benchmark 5:** Create 100k 2MB files, then measure the deletion times of each file(delete_10k_2k_200MB).
+**Benchmark 7:** Measure deletion times of 200MB files in a small directory.
+- Name: delete_small_dir_200MB
 - Methodology:
-    1. 8k 2MB, and 2k 200 MB files were created.
-    2. Then deletion performance was measured for each of the 2k 200MB files.
-    3. Note that 2000 2MB files is already 400GB of data.
+    1. Start the directory off with 1k 1MB, files, then create/delete 200MB files, while measuring deletion times.
+    2. The throughput numbers includes the file creation + file deletion operation, but the latency numbers only
+       include the file deletion operation. Deletion throughput can be calculated using average latencies.
+    3. The benchmark was repeated three times on each file system.
+    4. The benchmark was run for 600 seconds on each run.
 - Results:
-1. ext4 results from all three runs of the benchmark.
+1. ext4 results from each of the three runs of the benchmark.
 ```
-Running benchmark: delete_10k_2k_200MB
-Description: create 10k files, with 2k 200MB files, measure deletion times of 200MB files
-____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k       1s            1.0         1644.4      0.0      3.9      4.2     10.5
-delete_10k       2s          254.0          949.3      3.8      4.1      8.4     13.6
-delete_10k       3s           68.0          655.6     23.1     25.2     25.2     25.2
+____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
+delete_sma   600.0s            628            1.0 0.07221 0.04915 0.07373 0.09011 13.10720
 
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k     3.8s           2000          529.4      1.9      0.0      4.2     24.1     25.2
-
-fsbench/delete_10k_2k_200MB  2000 529.4 ops/sec
-
-
-Running benchmark: delete_10k_2k_200MB
-Description: create 10k files, with 2k 200MB files, measure deletion times of 200MB files
-____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k       1s            1.1         1953.6      0.0      3.8     24.1     27.3
-delete_10k       2s           41.0          998.0     24.1     25.2     27.3     27.3
+delete_sma   600.0s            630            1.0 0.04897 0.04915 0.05734 0.07373 0.11469
 
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k     2.1s           2000          963.2      1.0      0.0      3.9     24.1     27.3
-
-fsbench/delete_10k_2k_200MB  2000 963.2 ops/sec
-
-
-Running benchmark: delete_10k_2k_200MB
-Description: create 10k files, with 2k 200MB files, measure deletion times of 200MB files
-____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k       1s            1.0         1677.0      0.0      0.0      0.1    436.2
-delete_10k       2s          278.0          977.4      0.0      0.0      0.1   1476.4
-
-____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k     3.0s           2000          672.9      1.5      0.0      0.0     24.1   1476.4
-
-fsbench/delete_10k_2k_200MB  2000 672.9 ops/sec
+delete_sma   600.0s            625            1.0 0.04735 0.04915 0.05734 0.07373 0.12288
 ```
-- The 2000 200MB files get deleted before the deletion throughput hits a steady state. 2000 files
-  get deleted in under 3 seconds.
 
-2. zfs results from all three runs of the benchmark.
+
+2. zfs results from each of the three runs of the benchmark.
 ```
-Running benchmark: delete_10k_2k_200MB
-Description: create 10k files, with 2k 200MB files, measure deletion times of 200MB files
-____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k       1s            0.3          685.8      1.3      2.5      5.0      9.4
-delete_10k       2s          571.1          628.2      1.4      2.5      6.3    159.4
-delete_10k       3s          519.9          592.1      1.3      2.5      5.5    268.4
+____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
+delete_sma   600.0s            584            1.0 0.82262 0.78643 2.22822 4.45645 10.48576
 
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k     3.6s           2000          558.7      1.8      1.3      2.5      5.8    285.2
-
-fsbench/delete_10k_2k_200MB  2000 558.7 ops/sec
-
-
-Running benchmark: delete_10k_2k_200MB
-Description: create 10k files, with 2k 200MB files, measure deletion times of 200MB files
-____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k       1s            0.4          741.4      1.2      2.0      5.5      6.8
-delete_10k       2s          579.2          660.3      1.2      2.2      4.7    234.9
-delete_10k       3s          483.4          601.5      1.2      2.0      3.4    318.8
+delete_sma   600.0s            564            0.9 0.73689 0.75366 1.63840 3.93216 11.01005
 
 ____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k     3.5s           2000          570.3      1.8      1.2      2.2      5.0    318.8
-
-fsbench/delete_10k_2k_200MB  2000 570.3 ops/sec
-
-
-Running benchmark: delete_10k_2k_200MB
-Description: create 10k files, with 2k 200MB files, measure deletion times of 200MB files
-____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k       1s            0.4          738.4      1.2      1.7      5.8     10.0
-delete_10k       2s          562.5          650.5      1.2      1.6      3.1    285.2
-delete_10k       3s          503.0          601.3      1.3      1.6      3.7    335.5
-
-____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
-delete_10k     3.6s           2000          559.4      1.8      1.2      1.7      4.7    335.5
-
-fsbench/delete_10k_2k_200MB  2000 559.4 ops/sec
+delete_sma   600.1s            569            0.9 0.76986 0.75366 1.50733 3.27680 8.91290
 ```
-- Deletions don't hit steady state.
+- These zfs results seemed a bit extreme, so I reformatted the file system on the same machine
+  and ran this benchmark again, and got latencies in the ~0.4ms range.
 
 Comparison:
-- Both benchmarks seem to be unaffected by file size at least when there are only 10k files in the
-directory.
+- Deletes on ext4 are faster. There is an order of magnitude latency difference between ext4 and zfs.
+
+**Benchmark 8:** Measure deletion times of 2MB files in a large directory.
+- Name: delete_large_dir_2MB
+- Methodology:
+    1. Start the directory off with 100k 1MB, files, then create/delete 2MB files, while measuring deletion times.
+    2. The throughput numbers includes the file creation + file deletion operation, but the latency numbers only
+       include the file deletion operation. Deletion throughput can be calculated using average latencies.
+    3. The benchmark was repeated three times on each file system.
+    4. The benchmark was run for 600 seconds on each run.
+- Results:
+1. ext4 results from each of the three runs of the benchmark.
+```
+____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
+delete_lar   600.0s          73731          122.9 0.02843 0.03277 0.04915 0.06553 5.76717
+
+____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
+delete_lar   600.0s          60304          100.5 0.03307 0.03277 0.04915 0.05734 20.97152
+
+____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
+delete_lar   600.1s          58548           97.6 0.03700 0.03277 0.04915 0.05734 35.65158
+```
+Notes
+- Suprisingly, these deletes are much faster than deleting 2MB files in a small directory. I ran this again on
+
+2. zfs results from each of the three runs of the benchmark.
+```
+____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
+delete_lar   600.0s          70632          117.7 0.09066 0.08192 0.14746 0.45875 11.53434
+
+____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
+delete_lar   600.0s          70539          117.6 0.12892 0.08192 0.13107 0.49152 37.74873
+
+____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
+delete_lar   600.0s          70230          117.0 0.14590 0.08192 0.13926 0.47514 56.62310
+```
+
+Comparison:
+- Deletes on ext4 are faster. We might need to run the benchmarks while printing out the latencies in nanoseconds
+  to see a more precise comparison. But from the previous deletion benchmarks, we already know that deletion
+  throughput is much higher on ext4.
+
+**Benchmark 9:** Measure deletion times of 200MB files in a large directory.
+- Name: delete_large_dir_200MB
+- Methodology:
+    1. Start the directory off with 100k 1MB, files, then create/delete 200MB files, while measuring deletion times.
+    2. The throughput numbers includes the file creation + file deletion operation, but the latency numbers only
+       include the file deletion operation. Deletion throughput can be calculated using average latencies.
+    3. The benchmark was repeated three times on each file system.
+- Results:
+1. ext4 results from each of the three runs of the benchmark.
+```
+____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
+delete_lar   600.0s            708            1.2 0.04950 0.04915 0.06553 0.09830 0.18841
+
+____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
+delete_lar   600.0s            704            1.2 0.04030 0.04096 0.05734 0.07373 0.09830
+
+____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
+delete_lar   600.0s            676            1.1 0.04760 0.04915 0.05734 0.09830 0.11469
+```
 
 
-**Benchmark 6:** Write 10MB to a file and then call sync(write_sync_10MB).
+2. zfs results from each of the three runs of the benchmark.
+```
+____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
+delete_lar   600.0s            605            1.0 0.15884 0.15565 0.25395 0.31129 1.04858
+
+____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
+delete_lar   600.0s            609            1.0 0.13552 0.13107 0.22118 0.27853 0.32768
+
+____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
+delete_lar   600.0s            613            1.0 0.14488 0.13926 0.22118 0.27853 2.49037
+```
+
+Comparison:
+
+
+**Benchmark 10:** Write 10MB to a file and then call sync.
+- Name: write_sync_10MB
 - Methodology:
     1. We write 10MB to a file, then call sync, measuring latencies for the sync.
     2. A new file is created once the old file hits 2GB.
-    3. The benchmark was run for 600 seconds.
+    3. The benchmark was run for 600 seconds on each run.
     4. Note that the throughput numbers in the benchmark aren't accurate, since
        the throughput column is measuring the throughput of the entire (file write + sync) operation.
        However, the latency numbers, measure only the latency of the sync and are accurate. The average
        latency numbers can be used to calculate the average throughput.
+    5. The benchmark ws run thrice on each file system.
 - Results:
 1. ext4 results from each run of the benchmark.
 ```
@@ -535,17 +442,20 @@ Comparison:
 
 Notes:
 - This benchmark was also run with 1MB, 100MB, and we saw the throughputs/latencies scale linearly.
-For example, for 1MB files, sync latencies were 2-3ms.
+For example, for 1MB files, sync latencies were 2-3ms, compared to 20-30ms for 10MB files, and 200-300ms
+for 100MB files.
 
 
-**Benchmark 7:** statfs with many files(statfs_many_files).
+**Benchmark 11:** statfs with many files.
+- Name: statfs_many_files
 - Methodology:
     1. statfs was called on the parent directory after creation + 100KB writes on a file.
-    3. The benchmark was run for 600 seconds.
+    3. The benchmark was run for 600 seconds on each run.
     4. Note that the throughput numbers in the benchmark aren't accurate, since
        the throughput column is measuring the throughput of the entire (file create/write + statfs) operation.
        However, the latency numbers, measure only the latency of the statfs call and are accurate. The average
        latency numbers can be used to calculate the average throughput.
+    5. The benchmark was run thrice on each file system.
 - Results:
 1. ext4 results from each of the runs.
 ```
@@ -575,21 +485,8 @@ statfs_man   600.0s         576686          961.1      0.0      0.0      0.0    
 Comparison:
 - Over 600 seconds, the ext4 benchmark created ~300k files, and the zfs benchmark created ~600k files.
 - Each file was 100KB.
-- But the statfs operation still returned extremely quickly.
+- But the statfs operation still returned extremely quickly, and probably has a O(1) runtime even as
+  the number files in a directory increase.
 
 Notes:
 - A similar statfs benchmark was run with 100MB files, and there was no difference in statfs performance.
-
-
-**benchstat comparison**
-1. For the `write_sync_10MB` benchmark, the throughput numbers were calculated using average latency.
-2. Results from statfs benchmarks aren't included here, because the average latency was 0 for both ext4 and zfs,
-    and the throughput numbers are inaccurate as in the `write_sync` benchmark.
-```
-name                         old ops/sec  new ops/sec  delta
-fsbench/create_empty            672 ± 5%    1117 ± 7%   ~     (p=0.100 n=3+3)
-fsbench/delete_10k_2MB        5.31k ± 7%   2.42k ±18%   ~     (p=0.100 n=3+3)
-fsbench/delete_100k_2MB       30.5k ± 1%    1.8k ± 1%   ~     (p=0.100 n=3+3)
-fsbench/delete_10k_2k_200MB     722 ±33%     563 ± 1%   ~     (p=0.700 n=3+3)
-fsbench/write_sync_10MB        30.4 ± 3%    27.1 ± 1%   ~     (p=0.100 n=3+3)
-```
