@@ -243,7 +243,7 @@ delete_200     5.2s         200000        38511.9      0.0      0.0      0.0    
 - All the benchmarks in this section were run e2e on the same machine(without reformatting the fs b/w runs).
 - The benchmark order was, 9, 8, 7, 6.
 
-**Benchmark 6:** Measure deletion times of 2MB files in a small directory.(delete_small_dir_2MB).
+**Benchmark 6:** Measure deletion times of 2MB files in a small directory.
 - Name: delete_small_dir_2MB
 - Methodology:
     1. Start the directory off with 1k 1MB, files, then create/delete 2MB files, while measuring deletion times.
