@@ -1,0 +1,35 @@
+Benchmarkfsbench/create_empty 386438  644.1 ops/sec
+Benchmarkfsbench/create_empty 400131  666.9 ops/sec
+Benchmarkfsbench/create_empty 422736  704.6 ops/sec
+
+Benchmarkfsbench/delete_10k_2MB 10000 5657.3 ops/sec
+Benchmarkfsbench/delete_10k_2MB  10000 4988.0 ops/sec
+Benchmarkfsbench/delete_10k_2MB  10000 5275.4 ops/sec
+
+Benchmarkfsbench/delete_100k_2MB  100000 30400.5 ops/sec
+Benchmarkfsbench/delete_100k_2MB  100000 30839.7 ops/sec
+Benchmarkfsbench/delete_100k_2MB  100000 30263.3 ops/sec
+
+Benchmarkfsbench/delete_10k_2k_200MB  2000 529.4 ops/sec
+Benchmarkfsbench/delete_10k_2k_200MB  2000 963.2 ops/sec
+Benchmarkfsbench/delete_10k_2k_200MB  2000 672.9 ops/sec
+
+Benchmarkfsbench/write_sync_10MB  1 30.76 ops/sec
+Benchmarkfsbench/write_sync_10MB  1 31.1 ops/sec
+Benchmarkfsbench/write_sync_10MB  1 29.4 ops/sec
+
+Benchmarkfsbench/delete_small_dir_2MB 1 16949.15 ops/sec
+Benchmarkfsbench/delete_small_dir_2MB 1 13431.83 ops/sec
+Benchmarkfsbench/delete_small_dir_2MB 1 16479.89 ops/sec
+
+Benchmarkfsbench/delete_small_dir_200MB 1 13848.49 ops/sec
+Benchmarkfsbench/delete_small_dir_200MB 1 20420.66 ops/sec
+Benchmarkfsbench/delete_small_dir_200MB 1 21119.32 ops/sec
+
+Benchmarkfsbench/delete_large_dir_2MB 1 35174.11 ops/sec
+Benchmarkfsbench/delete_large_dir_2MB 1 30238.88 ops/sec
+Benchmarkfsbench/delete_large_dir_2MB 1 27027.02 ops/sec
+
+Benchmarkfsbench/delete_large_dir_200MB 1 20202.02 ops/sec
+Benchmarkfsbench/delete_large_dir_200MB 1 24813.89 ops/sec
+Benchmarkfsbench/delete_large_dir_200MB 1 21739.13 ops/sec

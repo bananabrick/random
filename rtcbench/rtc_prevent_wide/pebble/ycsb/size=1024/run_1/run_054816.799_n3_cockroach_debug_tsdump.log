@@ -1,0 +1,26 @@
+run_054816.799_n3_cockroach_debug_tsdump: 05:48:16 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:3 -- ./cockroach debug tsdump --insecure --format=raw > tsdump.gob
+bash: ./cockroach: No such file or directory
+Error: COMMAND_PROBLEM: exit status 127
+(1) COMMAND_PROBLEM
+Wraps: (2) Node 3. Command with error:
+  | ```
+  | ./cockroach debug tsdump --insecure --format=raw > tsdump.gob
+  | ```
+Wraps: (3) exit status 127
+Error types: (1) errors.Cmd (2) *hintdetail.withDetail (3) *exec.ExitError
+run_054816.799_n3_cockroach_debug_tsdump: 05:48:18 z_cluster.go:1909: > result: /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:3 -- ./cockroach debug tsdump --insecure --format=raw > tsdump.gob returned: exit status 20
+(1) /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:3 -- ./cockroach debug tsdump --insecure --format=raw > tsdump.gob returned
+  | stderr:
+  | bash: ./cockroach: No such file or directory
+  | Error: COMMAND_PROBLEM: exit status 127
+  | (1) COMMAND_PROBLEM
+  | Wraps: (2) Node 3. Command with error:
+  |   | ```
+  |   | ./cockroach debug tsdump --insecure --format=raw > tsdump.gob
+  |   | ```
+  | Wraps: (3) exit status 127
+  | Error types: (1) errors.Cmd (2) *hintdetail.withDetail (3) *exec.ExitError
+  |
+  | stdout:
+Wraps: (2) exit status 20
+Error types: (1) *cluster.WithCommandDetails (2) *exec.ExitError

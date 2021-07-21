@@ -1,0 +1,6 @@
+22:27:11 z_cluster.go:517: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod list nair-test --json --quiet
+22:27:15 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod stop nair-test:1-5
+nair-test: stopping and waiting.
+22:27:17 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod wipe nair-test:1-5
+nair-test: stopping and waiting.
+nair-test: wiping.

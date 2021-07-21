@@ -1,0 +1,24 @@
+run_053250.396_n1_cockroach_debug_tsdump: 05:32:50 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1 -- ./cockroach debug tsdump --insecure --format=raw > tsdump.gob
+Error: SSH_PROBLEM: exit status 255
+(1) SSH_PROBLEM
+Wraps: (2) Node 1. Command with error:
+  | ```
+  | ./cockroach debug tsdump --insecure --format=raw > tsdump.gob
+  | ```
+Wraps: (3) exit status 255
+Error types: (1) errors.SSH (2) *hintdetail.withDetail (3) *exec.ExitError
+run_053250.396_n1_cockroach_debug_tsdump: 05:48:15 z_cluster.go:1909: > result: /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1 -- ./cockroach debug tsdump --insecure --format=raw > tsdump.gob returned: exit status 10
+(1) /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1 -- ./cockroach debug tsdump --insecure --format=raw > tsdump.gob returned
+  | stderr:
+  | Error: SSH_PROBLEM: exit status 255
+  | (1) SSH_PROBLEM
+  | Wraps: (2) Node 1. Command with error:
+  |   | ```
+  |   | ./cockroach debug tsdump --insecure --format=raw > tsdump.gob
+  |   | ```
+  | Wraps: (3) exit status 255
+  | Error types: (1) errors.SSH (2) *hintdetail.withDetail (3) *exec.ExitError
+  |
+  | stdout:
+Wraps: (2) exit status 10
+Error types: (1) *cluster.WithCommandDetails (2) *exec.ExitError

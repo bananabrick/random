@@ -1,0 +1,63 @@
+23:37:09 main.go:443: test runner logs in: rtc_bench/rtc/_runner-logs/test_runner-1626824229.log
+23:37:09 z_test_runner.go:1045: [w0] Selected test: pebble/ycsb/size=1024 run: 1.
+23:37:09 z_test_runner.go:241: [w0] Creating new cluster for test pebble/ycsb/size=1024: n5cpu16
+23:37:18 z_test_runner.go:498: [w0] starting test: pebble/ycsb/size=1024:1
+00:43:26 z_test_runner.go:512: [w0] test passed
+00:43:26 z_cluster.go:517: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:5 -- bash -c 'PERF_ARTIFACTS="perf"
+if [[ -d "${PERF_ARTIFACTS}" ]]; then
+    echo true
+elif [[ -e "${PERF_ARTIFACTS}" ]]; then
+    ls -la "${PERF_ARTIFACTS}"
+    exit 1
+else
+    echo false
+fi'
+00:43:26 z_cluster.go:517: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:3 -- bash -c 'PERF_ARTIFACTS="perf"
+if [[ -d "${PERF_ARTIFACTS}" ]]; then
+    echo true
+elif [[ -e "${PERF_ARTIFACTS}" ]]; then
+    ls -la "${PERF_ARTIFACTS}"
+    exit 1
+else
+    echo false
+fi'
+00:43:26 z_cluster.go:517: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:4 -- bash -c 'PERF_ARTIFACTS="perf"
+if [[ -d "${PERF_ARTIFACTS}" ]]; then
+    echo true
+elif [[ -e "${PERF_ARTIFACTS}" ]]; then
+    ls -la "${PERF_ARTIFACTS}"
+    exit 1
+else
+    echo false
+fi'
+00:43:26 z_cluster.go:517: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1 -- bash -c 'PERF_ARTIFACTS="perf"
+if [[ -d "${PERF_ARTIFACTS}" ]]; then
+    echo true
+elif [[ -e "${PERF_ARTIFACTS}" ]]; then
+    ls -la "${PERF_ARTIFACTS}"
+    exit 1
+else
+    echo false
+fi'
+00:43:26 z_cluster.go:517: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:2 -- bash -c 'PERF_ARTIFACTS="perf"
+if [[ -d "${PERF_ARTIFACTS}" ]]; then
+    echo true
+elif [[ -e "${PERF_ARTIFACTS}" ]]; then
+    ls -la "${PERF_ARTIFACTS}"
+    exit 1
+else
+    echo false
+fi'
+00:43:27 z_test_runner.go:572: [w0] no perf artifacts exist on node :1
+00:43:27 z_test_runner.go:572: [w0] no perf artifacts exist on node :3
+00:43:27 z_test_runner.go:572: [w0] no perf artifacts exist on node :4
+00:43:27 z_test_runner.go:572: [w0] no perf artifacts exist on node :5
+00:43:28 z_test_runner.go:572: [w0] no perf artifacts exist on node :2
+00:43:28 z_work_pool.go:103: [w0] No tests that can reuse cluster nair-test [tag:] (5 nodes) found (or there are no further tests to run). Destroying.
+00:43:28 z_cluster.go:1494: [w0] wiping cluster nair-test [tag:] (5 nodes)
+00:43:28 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod wipe nair-test
+nair-test: stopping and waiting.
+nair-test: wiping..
+00:43:32 z_test_runner.go:405: [w0] Worker exiting; no cluster to destroy.
+00:43:32 z_test_runner.go:338: PASS
+00:43:32 main.go:352: runTests destroying all clusters

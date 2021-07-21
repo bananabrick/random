@@ -1,0 +1,13 @@
+# user@host            locality                                   vpcId
+ubuntu@34.73.62.217    cloud=gce,region=us-east1,zone=us-east1-b  default
+ubuntu@35.185.62.78    cloud=gce,region=us-east1,zone=us-east1-b  default
+ubuntu@34.139.235.255  cloud=gce,region=us-east1,zone=us-east1-b  default
+ubuntu@34.75.95.226    cloud=gce,region=us-east1,zone=us-east1-c  default
+ubuntu@34.138.125.162  cloud=gce,region=us-east1,zone=us-east1-c  default
+ubuntu@35.227.14.90    cloud=gce,region=us-east1,zone=us-east1-c  default
+ubuntu@35.197.115.118  cloud=gce,region=us-west1,zone=us-west1-b  default
+ubuntu@34.82.206.206   cloud=gce,region=us-west1,zone=us-west1-b  default
+ubuntu@34.83.105.102   cloud=gce,region=us-west1,zone=us-west1-b  default
+ubuntu@35.247.89.2     cloud=gce,region=us-west1,zone=us-west1-a  default
+ubuntu@34.105.101.168  cloud=gce,region=us-west1,zone=us-west1-a  default
+ubuntu@34.127.5.151    cloud=gce,region=us-west1,zone=us-west1-a  default

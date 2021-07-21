@@ -1,0 +1,40 @@
+The benchmark will be run 3 time(s).
+Starting benchmark: 0
+Running benchmark: delete_100k_2MB
+Description: create 100k 2MB size files, measure deletion times
+____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
+delete_100       1s            4.8         3934.9      0.3      0.3      0.4      1.3
+delete_100       2s        11192.7         7564.8      0.0      0.3      0.3      0.9
+delete_100       3s        65339.3        26824.1      0.0      0.0      0.0      0.4
+
+____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
+delete_100     3.3s         100000        30400.5      0.0      0.0      0.2      0.3      1.3
+
+fsbench/delete_100k_2MB  100000 30400.5 ops/sec
+
+Starting benchmark: 1
+Running benchmark: delete_100k_2MB
+Description: create 100k 2MB size files, measure deletion times
+____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
+delete_100       1s            4.9         3965.5      0.3      0.3      0.4      1.3
+delete_100       2s        13960.3         8962.3      0.0      0.3      0.3      0.5
+delete_100       3s        64925.6        27613.0      0.0      0.0      0.0      0.3
+
+____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
+delete_100     3.2s         100000        30839.7      0.0      0.0      0.2      0.3      1.3
+
+fsbench/delete_100k_2MB  100000 30839.7 ops/sec
+
+Starting benchmark: 2
+Running benchmark: delete_100k_2MB
+Description: create 100k 2MB size files, measure deletion times
+____optype__elapsed__ops/sec(inst)___ops/sec(cum)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
+delete_100       1s            4.7         3855.4      0.3      0.3      0.4      1.2
+delete_100       2s        10006.7         6929.6      0.0      0.3      0.4      0.6
+delete_100       3s        64538.3        26131.6      0.0      0.0      0.0      0.3
+
+____optype__elapsed_____ops(total)___ops/sec(cum)__avg(ms)__p50(ms)__p95(ms)__p99(ms)_pMax(ms)
+delete_100     3.3s         100000        30263.3      0.0      0.0      0.2      0.3      1.2
+
+fsbench/delete_100k_2MB  100000 30263.3 ops/sec
+

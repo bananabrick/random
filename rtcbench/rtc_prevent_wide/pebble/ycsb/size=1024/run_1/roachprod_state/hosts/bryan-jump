@@ -1,0 +1,2 @@
+# user@host           locality                                   vpcId
+ubuntu@34.138.89.238  cloud=gce,region=us-east1,zone=us-east1-b  default

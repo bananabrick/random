@@ -1,0 +1,14 @@
+teardown: 01:52:27 z_cluster.go:517: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod monitor nair-test --oneshot --ignore-empty-nodes
+teardown: 01:52:29 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod pgurl --external nair-test:1
+'postgres://root@34.138.24.54:26257?sslmode=disable'
+teardown: 01:52:30 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod pgurl --external nair-test:2
+'postgres://root@35.227.17.208:26257?sslmode=disable'
+teardown: 01:52:32 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod pgurl --external nair-test:3
+'postgres://root@35.243.139.183:26257?sslmode=disable'
+teardown: 01:52:33 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod pgurl --external nair-test:4
+'postgres://root@35.196.129.40:26257?sslmode=disable'
+teardown: 01:52:35 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod pgurl --external nair-test:5
+'postgres://root@34.74.205.114:26257?sslmode=disable'
+teardown: 01:52:37 z_cluster.go:1308: no live node found, skipping consistency check
+teardown: 01:52:37 z_test_runner.go:670: [w0] --- PASS: pebble/ycsb/size=1024 (3972.29s)
+teardown: 01:52:38 z_cluster.go:671: test status: wiping cluster

@@ -1,0 +1,46 @@
+run_053228.815_n1-5_mkdir: 05:32:28 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- mkdir -p logs/redacted && ./cockroach debug merge-logs --redact logs/*.log > logs/redacted/combined.log
+nair-test: mkdir -p logs/redacted && .....
+   1: bash: ./cockroach: No such file or directory
+COMMAND_PROBLEM: exit status 127
+   2: bash: ./cockroach: No such file or directory
+COMMAND_PROBLEM: exit status 127
+   3: bash: ./cockroach: No such file or directory
+COMMAND_PROBLEM: exit status 127
+   4: bash: ./cockroach: No such file or directory
+COMMAND_PROBLEM: exit status 127
+   5: bash: ./cockroach: No such file or directory
+COMMAND_PROBLEM: exit status 127
+Error: COMMAND_PROBLEM: exit status 127
+(1) COMMAND_PROBLEM
+Wraps: (2) Node 1. Command with error:
+  | ```
+  | mkdir -p logs/redacted && ./cockroach debug merge-logs --redact logs/*.log > logs/redacted/combined.log
+  | ```
+Wraps: (3) exit status 127
+Error types: (1) errors.Cmd (2) *hintdetail.withDetail (3) *exec.ExitError
+run_053228.815_n1-5_mkdir: 05:32:32 z_cluster.go:1909: > result: /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- mkdir -p logs/redacted && ./cockroach debug merge-logs --redact logs/*.log > logs/redacted/combined.log returned: exit status 20
+(1) /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- mkdir -p logs/redacted && ./cockroach debug merge-logs --redact logs/*.log > logs/redacted/combined.log returned
+  | stderr:
+  | Error: COMMAND_PROBLEM: exit status 127
+  | (1) COMMAND_PROBLEM
+  | Wraps: (2) Node 1. Command with error:
+  |   | ```
+  |   | mkdir -p logs/redacted && ./cockroach debug merge-logs --redact logs/*.log > logs/redacted/combined.log
+  |   | ```
+  | Wraps: (3) exit status 127
+  | Error types: (1) errors.Cmd (2) *hintdetail.withDetail (3) *exec.ExitError
+  |
+  | stdout:
+  | nair-test: mkdir -p logs/redacted && .....
+  |    1: bash: ./cockroach: No such file or directory
+  | COMMAND_PROBLEM: exit status 127
+  |    2: bash: ./cockroach: No such file or directory
+  | COMMAND_PROBLEM: exit status 127
+  |    3: bash: ./cockroach: No such file or directory
+  | COMMAND_PROBLEM: exit status 127
+  |    4: bash: ./cockroach: No such file or directory
+  | COMMAND_PROBLEM: exit status 127
+  |    5: bash: ./cockroach: No such file or directory
+  | COMMAND_PROBLEM: exit status 127
+Wraps: (2) exit status 20
+Error types: (1) *cluster.WithCommandDetails (2) *exec.ExitError

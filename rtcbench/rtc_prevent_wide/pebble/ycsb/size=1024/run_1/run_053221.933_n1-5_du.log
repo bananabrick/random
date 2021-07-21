@@ -1,0 +1,46 @@
+run_053221.933_n1-5_du: 05:32:21 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- du -c /mnt/data1 --exclude lost+found >> logs/diskusage.txt
+nair-test: du -c /mnt/data1 --exclude ....
+   1: bash: logs/diskusage.txt: No such file or directory
+COMMAND_PROBLEM: exit status 1
+   2: bash: logs/diskusage.txt: No such file or directory
+COMMAND_PROBLEM: exit status 1
+   3: bash: logs/diskusage.txt: No such file or directory
+COMMAND_PROBLEM: exit status 1
+   4: bash: logs/diskusage.txt: No such file or directory
+COMMAND_PROBLEM: exit status 1
+   5: bash: logs/diskusage.txt: No such file or directory
+COMMAND_PROBLEM: exit status 1
+Error: COMMAND_PROBLEM: exit status 1
+(1) COMMAND_PROBLEM
+Wraps: (2) Node 1. Command with error:
+  | ```
+  | du -c /mnt/data1 --exclude lost+found >> logs/diskusage.txt
+  | ```
+Wraps: (3) exit status 1
+Error types: (1) errors.Cmd (2) *hintdetail.withDetail (3) *exec.ExitError
+run_053221.933_n1-5_du: 05:32:25 z_cluster.go:1909: > result: /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- du -c /mnt/data1 --exclude lost+found >> logs/diskusage.txt returned: exit status 20
+(1) /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- du -c /mnt/data1 --exclude lost+found >> logs/diskusage.txt returned
+  | stderr:
+  | Error: COMMAND_PROBLEM: exit status 1
+  | (1) COMMAND_PROBLEM
+  | Wraps: (2) Node 1. Command with error:
+  |   | ```
+  |   | du -c /mnt/data1 --exclude lost+found >> logs/diskusage.txt
+  |   | ```
+  | Wraps: (3) exit status 1
+  | Error types: (1) errors.Cmd (2) *hintdetail.withDetail (3) *exec.ExitError
+  |
+  | stdout:
+  | nair-test: du -c /mnt/data1 --exclude ....
+  |    1: bash: logs/diskusage.txt: No such file or directory
+  | COMMAND_PROBLEM: exit status 1
+  |    2: bash: logs/diskusage.txt: No such file or directory
+  | COMMAND_PROBLEM: exit status 1
+  |    3: bash: logs/diskusage.txt: No such file or directory
+  | COMMAND_PROBLEM: exit status 1
+  |    4: bash: logs/diskusage.txt: No such file or directory
+  | COMMAND_PROBLEM: exit status 1
+  |    5: bash: logs/diskusage.txt: No such file or directory
+  | COMMAND_PROBLEM: exit status 1
+Wraps: (2) exit status 20
+Error types: (1) *cluster.WithCommandDetails (2) *exec.ExitError

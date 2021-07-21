@@ -1,0 +1,1880 @@
+04:17:41 z_test_runner.go:622: [w0] === RUN   pebble/ycsb/size=1024
+04:17:41 z_cluster.go:671: test status: uploading file
+04:17:41 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod put nair-test ./pebble_rtc_prevent_wide ./pebble
+nair-test: putting (dist) ./pebble_rtc_prevent_wide ./pebble
+....
+   1: done
+   2: done
+   3: done
+   4: done
+   5: done
+   6: done
+   7: done
+04:17:46 z_cluster.go:671: test status: 
+04:17:46 pebble.go:43: [w0] > (./pebble bench ycsb $(dirname {store-dir})/bench --wipe  --workload=read=100 --concurrency=1 --values=1024 --initial-keys=10000000 --cache=4294967296 --num-ops=1 && rm -f $(dirname {store-dir})/data.tar && tar cvPf $(dirname {store-dir})/data.tar $(dirname {store-dir})/bench) > init.log 2>&1
+04:17:46 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- (./pebble bench ycsb $(dirname {store-dir})/bench --wipe  --workload=read=100 --concurrency=1 --values=1024 --initial-keys=10000000 --cache=4294967296 --num-ops=1 && rm -f $(dirname {store-dir})/data.tar && tar cvPf $(dirname {store-dir})/data.tar $(dirname {store-dir})/bench) > init.log 2>&1
+nair-test: (./pebble bench ycsb $(dirn.....................................................................................................................................................
+   1: 
+   2: 
+   3: 
+   4: 
+   5: 
+04:20:13 pebble.go:45: > result: <nil>
+04:20:13 pebble.go:43: [w0] > rm -fr $(dirname {store-dir})/bench && tar xPf $(dirname {store-dir})/data.tar && ./pebble bench ycsb $(dirname {store-dir})/bench --workload=A --concurrency=256 --values=1024 --keys=zipf --initial-keys=0 --prepopulated-keys=10000000 --cache=4294967296 --duration=10m0s > ycsb.log 2>&1
+04:20:13 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- rm -fr $(dirname {store-dir})/bench && tar xPf $(dirname {store-dir})/data.tar && ./pebble bench ycsb $(dirname {store-dir})/bench --workload=A --concurrency=256 --values=1024 --keys=zipf --initial-keys=0 --prepopulated-keys=10000000 --cache=4294967296 --duration=10m0s > ycsb.log 2>&1
+nair-test: rm -fr $(dirname {store-dir................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+   1: 
+   2: 
+   3: 
+   4: 
+   5: 
+04:30:51 pebble.go:45: > result: <nil>
+04:30:51 pebble.go:43: [w0] > tar cvPf profiles_A.tar *.prof
+04:30:51 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- tar cvPf profiles_A.tar *.prof
+nair-test: tar cvPf profiles_A.tar *.prof.
+   1: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+cpu.0600.prof
+heap.prof
+mutex.prof
+   2: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+heap.prof
+mutex.prof
+   3: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+cpu.0600.prof
+heap.prof
+mutex.prof
+   4: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+cpu.0600.prof
+heap.prof
+mutex.prof
+   5: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+cpu.0600.prof
+heap.prof
+mutex.prof
+04:30:52 pebble.go:45: > result: <nil>
+04:30:52 z_cluster.go:671: test status: getting ycsb.log
+04:30:52 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod get nair-test:1-5 ycsb.log rtc_bench/rtc_prevent_wide/pebble/ycsb/size=1024/run_1/ycsb_A.log
+nair-test: getting (scp) ycsb.log rtc_bench/rtc_prevent_wide/pebble/ycsb/size=1024/run_1/ycsb_A.log
+.
+   1: done
+   2: done
+   3: done
+   4: done
+   5: done
+04:30:54 z_cluster.go:671: test status: 
+04:30:54 z_cluster.go:671: test status: getting profiles_A.tar
+04:30:54 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod get nair-test:1-5 profiles_A.tar rtc_bench/rtc_prevent_wide/pebble/ycsb/size=1024/run_1/profiles_A.tar
+nair-test: getting (scp) profiles_A.tar rtc_bench/rtc_prevent_wide/pebble/ycsb/size=1024/run_1/profiles_A.tar
+..
+   1: done
+   2: done
+   3: done
+   4: done
+   5: done
+04:30:57 z_cluster.go:671: test status: 
+04:30:57 pebble.go:43: [w0] > rm -fr *.prof
+04:30:57 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- rm -fr *.prof
+nair-test: rm -fr *.prof.
+   1: 
+   2: 
+   3: 
+   4: 
+   5: 
+04:30:59 pebble.go:45: > result: <nil>
+04:30:59 pebble.go:43: [w0] > rm -fr $(dirname {store-dir})/bench && tar xPf $(dirname {store-dir})/data.tar && ./pebble bench ycsb $(dirname {store-dir})/bench --workload=B --concurrency=256 --values=1024 --keys=zipf --initial-keys=0 --prepopulated-keys=10000000 --cache=4294967296 --duration=10m0s > ycsb.log 2>&1
+04:30:59 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- rm -fr $(dirname {store-dir})/bench && tar xPf $(dirname {store-dir})/data.tar && ./pebble bench ycsb $(dirname {store-dir})/bench --workload=B --concurrency=256 --values=1024 --keys=zipf --initial-keys=0 --prepopulated-keys=10000000 --cache=4294967296 --duration=10m0s > ycsb.log 2>&1
+nair-test: rm -fr $(dirname {store-dir....................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+   1: 
+   2: 
+   3: 
+   4: 
+   5: 
+04:41:24 pebble.go:45: > result: <nil>
+04:41:24 pebble.go:43: [w0] > tar cvPf profiles_B.tar *.prof
+04:41:24 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- tar cvPf profiles_B.tar *.prof
+nair-test: tar cvPf profiles_B.tar *.prof.
+   1: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+cpu.0600.prof
+heap.prof
+mutex.prof
+   2: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+cpu.0600.prof
+heap.prof
+mutex.prof
+   3: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+cpu.0600.prof
+heap.prof
+mutex.prof
+   4: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+cpu.0600.prof
+heap.prof
+mutex.prof
+   5: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+cpu.0600.prof
+heap.prof
+mutex.prof
+04:41:26 pebble.go:45: > result: <nil>
+04:41:26 z_cluster.go:671: test status: getting ycsb.log
+04:41:26 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod get nair-test:1-5 ycsb.log rtc_bench/rtc_prevent_wide/pebble/ycsb/size=1024/run_1/ycsb_B.log
+nair-test: getting (scp) ycsb.log rtc_bench/rtc_prevent_wide/pebble/ycsb/size=1024/run_1/ycsb_B.log
+.
+   1: done
+   2: done
+   3: done
+   4: done
+   5: done
+04:41:27 z_cluster.go:671: test status: 
+04:41:27 z_cluster.go:671: test status: getting profiles_B.tar
+04:41:27 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod get nair-test:1-5 profiles_B.tar rtc_bench/rtc_prevent_wide/pebble/ycsb/size=1024/run_1/profiles_B.tar
+nair-test: getting (scp) profiles_B.tar rtc_bench/rtc_prevent_wide/pebble/ycsb/size=1024/run_1/profiles_B.tar
+..
+   1: done
+   2: done
+   3: done
+   4: done
+   5: done
+04:41:31 z_cluster.go:671: test status: 
+04:41:31 pebble.go:43: [w0] > rm -fr *.prof
+04:41:31 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- rm -fr *.prof
+nair-test: rm -fr *.prof.
+   1: 
+   2: 
+   3: 
+   4: 
+   5: 
+04:41:32 pebble.go:45: > result: <nil>
+04:41:32 pebble.go:43: [w0] > rm -fr $(dirname {store-dir})/bench && tar xPf $(dirname {store-dir})/data.tar && ./pebble bench ycsb $(dirname {store-dir})/bench --workload=C --concurrency=256 --values=1024 --keys=zipf --initial-keys=0 --prepopulated-keys=10000000 --cache=4294967296 --duration=10m0s > ycsb.log 2>&1
+04:41:32 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- rm -fr $(dirname {store-dir})/bench && tar xPf $(dirname {store-dir})/data.tar && ./pebble bench ycsb $(dirname {store-dir})/bench --workload=C --concurrency=256 --values=1024 --keys=zipf --initial-keys=0 --prepopulated-keys=10000000 --cache=4294967296 --duration=10m0s > ycsb.log 2>&1
+nair-test: rm -fr $(dirname {store-dir...................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+   1: 
+   2: 
+   3: 
+   4: 
+   5: 
+04:51:57 pebble.go:45: > result: <nil>
+04:51:57 pebble.go:43: [w0] > tar cvPf profiles_C.tar *.prof
+04:51:57 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- tar cvPf profiles_C.tar *.prof
+nair-test: tar cvPf profiles_C.tar *.prof.
+   1: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+cpu.0600.prof
+heap.prof
+mutex.prof
+   2: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+cpu.0600.prof
+heap.prof
+mutex.prof
+   3: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+cpu.0600.prof
+heap.prof
+mutex.prof
+   4: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+cpu.0600.prof
+heap.prof
+mutex.prof
+   5: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+cpu.0600.prof
+heap.prof
+mutex.prof
+04:51:59 pebble.go:45: > result: <nil>
+04:51:59 z_cluster.go:671: test status: getting ycsb.log
+04:51:59 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod get nair-test:1-5 ycsb.log rtc_bench/rtc_prevent_wide/pebble/ycsb/size=1024/run_1/ycsb_C.log
+nair-test: getting (scp) ycsb.log rtc_bench/rtc_prevent_wide/pebble/ycsb/size=1024/run_1/ycsb_C.log
+.
+   1: done
+   2: done
+   3: done
+   4: done
+   5: done
+04:52:00 z_cluster.go:671: test status: 
+04:52:00 z_cluster.go:671: test status: getting profiles_C.tar
+04:52:00 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod get nair-test:1-5 profiles_C.tar rtc_bench/rtc_prevent_wide/pebble/ycsb/size=1024/run_1/profiles_C.tar
+nair-test: getting (scp) profiles_C.tar rtc_bench/rtc_prevent_wide/pebble/ycsb/size=1024/run_1/profiles_C.tar
+..
+   1: done
+   2: done
+   3: done
+   4: done
+   5: done
+04:52:04 z_cluster.go:671: test status: 
+04:52:04 pebble.go:43: [w0] > rm -fr *.prof
+04:52:04 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- rm -fr *.prof
+nair-test: rm -fr *.prof.
+   1: 
+   2: 
+   3: 
+   4: 
+   5: 
+04:52:05 pebble.go:45: > result: <nil>
+04:52:05 pebble.go:43: [w0] > rm -fr $(dirname {store-dir})/bench && tar xPf $(dirname {store-dir})/data.tar && ./pebble bench ycsb $(dirname {store-dir})/bench --workload=D --concurrency=256 --values=1024 --keys=uniform --initial-keys=0 --prepopulated-keys=10000000 --cache=4294967296 --duration=10m0s > ycsb.log 2>&1
+04:52:05 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- rm -fr $(dirname {store-dir})/bench && tar xPf $(dirname {store-dir})/data.tar && ./pebble bench ycsb $(dirname {store-dir})/bench --workload=D --concurrency=256 --values=1024 --keys=uniform --initial-keys=0 --prepopulated-keys=10000000 --cache=4294967296 --duration=10m0s > ycsb.log 2>&1
+nair-test: rm -fr $(dirname {store-dir....................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+   1: 
+   2: 
+   3: 
+   4: 
+   5: 
+05:02:31 pebble.go:45: > result: <nil>
+05:02:31 pebble.go:43: [w0] > tar cvPf profiles_D.tar *.prof
+05:02:31 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- tar cvPf profiles_D.tar *.prof
+nair-test: tar cvPf profiles_D.tar *.prof.
+   1: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+cpu.0600.prof
+heap.prof
+mutex.prof
+   2: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+cpu.0600.prof
+heap.prof
+mutex.prof
+   3: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+cpu.0600.prof
+heap.prof
+mutex.prof
+   4: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+cpu.0600.prof
+heap.prof
+mutex.prof
+   5: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+cpu.0600.prof
+heap.prof
+mutex.prof
+05:02:32 pebble.go:45: > result: <nil>
+05:02:32 z_cluster.go:671: test status: getting ycsb.log
+05:02:32 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod get nair-test:1-5 ycsb.log rtc_bench/rtc_prevent_wide/pebble/ycsb/size=1024/run_1/ycsb_D.log
+nair-test: getting (scp) ycsb.log rtc_bench/rtc_prevent_wide/pebble/ycsb/size=1024/run_1/ycsb_D.log
+.
+   1: done
+   2: done
+   3: done
+   4: done
+   5: done
+05:02:34 z_cluster.go:671: test status: 
+05:02:34 z_cluster.go:671: test status: getting profiles_D.tar
+05:02:34 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod get nair-test:1-5 profiles_D.tar rtc_bench/rtc_prevent_wide/pebble/ycsb/size=1024/run_1/profiles_D.tar
+nair-test: getting (scp) profiles_D.tar rtc_bench/rtc_prevent_wide/pebble/ycsb/size=1024/run_1/profiles_D.tar
+..
+   1: done
+   2: done
+   3: done
+   4: done
+   5: done
+05:02:37 z_cluster.go:671: test status: 
+05:02:37 pebble.go:43: [w0] > rm -fr *.prof
+05:02:37 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- rm -fr *.prof
+nair-test: rm -fr *.prof.
+   1: 
+   2: 
+   3: 
+   4: 
+   5: 
+05:02:38 pebble.go:45: > result: <nil>
+05:02:38 pebble.go:43: [w0] > rm -fr $(dirname {store-dir})/bench && tar xPf $(dirname {store-dir})/data.tar && ./pebble bench ycsb $(dirname {store-dir})/bench --workload=E --concurrency=256 --values=1024 --keys=zipf --initial-keys=0 --prepopulated-keys=10000000 --cache=4294967296 --duration=10m0s > ycsb.log 2>&1
+05:02:38 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- rm -fr $(dirname {store-dir})/bench && tar xPf $(dirname {store-dir})/data.tar && ./pebble bench ycsb $(dirname {store-dir})/bench --workload=E --concurrency=256 --values=1024 --keys=zipf --initial-keys=0 --prepopulated-keys=10000000 --cache=4294967296 --duration=10m0s > ycsb.log 2>&1
+nair-test: rm -fr $(dirname {store-dir....................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+   1: 
+   2: 
+   3: 
+   4: 
+   5: 
+05:13:04 pebble.go:45: > result: <nil>
+05:13:04 pebble.go:43: [w0] > tar cvPf profiles_E.tar *.prof
+05:13:04 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- tar cvPf profiles_E.tar *.prof
+nair-test: tar cvPf profiles_E.tar *.prof.
+   1: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+cpu.0600.prof
+heap.prof
+mutex.prof
+   2: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+cpu.0600.prof
+heap.prof
+mutex.prof
+   3: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+cpu.0600.prof
+heap.prof
+mutex.prof
+   4: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+cpu.0600.prof
+heap.prof
+mutex.prof
+   5: cpu.0000.prof
+cpu.0010.prof
+cpu.0020.prof
+cpu.0030.prof
+cpu.0040.prof
+cpu.0050.prof
+cpu.0060.prof
+cpu.0070.prof
+cpu.0080.prof
+cpu.0090.prof
+cpu.0100.prof
+cpu.0110.prof
+cpu.0120.prof
+cpu.0130.prof
+cpu.0140.prof
+cpu.0150.prof
+cpu.0160.prof
+cpu.0170.prof
+cpu.0180.prof
+cpu.0190.prof
+cpu.0200.prof
+cpu.0210.prof
+cpu.0220.prof
+cpu.0230.prof
+cpu.0240.prof
+cpu.0250.prof
+cpu.0260.prof
+cpu.0270.prof
+cpu.0280.prof
+cpu.0290.prof
+cpu.0300.prof
+cpu.0310.prof
+cpu.0320.prof
+cpu.0330.prof
+cpu.0340.prof
+cpu.0350.prof
+cpu.0360.prof
+cpu.0370.prof
+cpu.0380.prof
+cpu.0390.prof
+cpu.0400.prof
+cpu.0410.prof
+cpu.0420.prof
+cpu.0430.prof
+cpu.0440.prof
+cpu.0450.prof
+cpu.0460.prof
+cpu.0470.prof
+cpu.0480.prof
+cpu.0490.prof
+cpu.0500.prof
+cpu.0510.prof
+cpu.0520.prof
+cpu.0530.prof
+cpu.0540.prof
+cpu.0550.prof
+cpu.0560.prof
+cpu.0570.prof
+cpu.0580.prof
+cpu.0590.prof
+cpu.0600.prof
+heap.prof
+mutex.prof
+05:13:06 pebble.go:45: > result: <nil>
+05:13:06 z_cluster.go:671: test status: getting ycsb.log
+05:13:06 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod get nair-test:1-5 ycsb.log rtc_bench/rtc_prevent_wide/pebble/ycsb/size=1024/run_1/ycsb_E.log
+nair-test: getting (scp) ycsb.log rtc_bench/rtc_prevent_wide/pebble/ycsb/size=1024/run_1/ycsb_E.log
+.
+   1: done
+   2: done
+   3: done
+   4: done
+   5: done
+05:13:08 z_cluster.go:671: test status: 
+05:13:08 z_cluster.go:671: test status: getting profiles_E.tar
+05:13:08 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod get nair-test:1-5 profiles_E.tar rtc_bench/rtc_prevent_wide/pebble/ycsb/size=1024/run_1/profiles_E.tar
+nair-test: getting (scp) profiles_E.tar rtc_bench/rtc_prevent_wide/pebble/ycsb/size=1024/run_1/profiles_E.tar
+...
+   1: done
+   2: done
+   3: done
+   4: done
+   5: done
+05:13:12 z_cluster.go:671: test status: 
+05:13:12 pebble.go:43: [w0] > rm -fr *.prof
+05:13:12 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- rm -fr *.prof
+nair-test: rm -fr *.prof.
+   1: 
+   2: 
+   3: 
+   4: 
+   5: 
+05:13:13 pebble.go:45: > result: <nil>
+05:13:13 pebble.go:43: [w0] > rm -fr $(dirname {store-dir})/bench && tar xPf $(dirname {store-dir})/data.tar && ./pebble bench ycsb $(dirname {store-dir})/bench --workload=F --concurrency=256 --values=1024 --keys=zipf --initial-keys=0 --prepopulated-keys=10000000 --cache=4294967296 --duration=10m0s > ycsb.log 2>&1
+05:13:13 z_cluster.go:381: > /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- rm -fr $(dirname {store-dir})/bench && tar xPf $(dirname {store-dir})/data.tar && ./pebble bench ycsb $(dirname {store-dir})/bench --workload=F --concurrency=256 --values=1024 --keys=zipf --initial-keys=0 --prepopulated-keys=10000000 --cache=4294967296 --duration=10m0s > ycsb.log 2>&1
+nair-test: rm -fr $(dirname {store-dir......................................................................................................................................................................................................................................................................................................................................................................................................................................
+   1: 
+SSH_PROBLEM: exit status 255
+   2: 
+SSH_PROBLEM: exit status 255
+   3: 
+SSH_PROBLEM: exit status 255
+   4: 
+SSH_PROBLEM: exit status 255
+   5: 
+SSH_PROBLEM: exit status 255
+Error: SSH_PROBLEM: exit status 255
+(1) SSH_PROBLEM
+Wraps: (2) Node 1. Command with error:
+  | ```
+  | rm -fr $(dirname {store-dir})/bench && tar xPf $(dirname {store-dir})/data.tar && ./pebble bench ycsb $(dirname {store-dir})/bench --workload=F --concurrency=256 --values=1024 --keys=zipf --initial-keys=0 --prepopulated-keys=10000000 --cache=4294967296 --duration=10m0s > ycsb.log 2>&1
+  | ```
+Wraps: (3) exit status 255
+Error types: (1) errors.SSH (2) *hintdetail.withDetail (3) *exec.ExitError
+05:32:17 pebble.go:45: > result: /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- rm -fr $(dirname {store-dir})/bench && tar xPf $(dirname {store-dir})/data.tar && ./pebble bench ycsb $(dirname {store-dir})/bench --workload=F --concurrency=256 --values=1024 --keys=zipf --initial-keys=0 --prepopulated-keys=10000000 --cache=4294967296 --duration=10m0s > ycsb.log 2>&1 returned: exit status 10
+(1) /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- rm -fr $(dirname {store-dir})/bench && tar xPf $(dirname {store-dir})/data.tar && ./pebble bench ycsb $(dirname {store-dir})/bench --workload=F --concurrency=256 --values=1024 --keys=zipf --initial-keys=0 --prepopulated-keys=10000000 --cache=4294967296 --duration=10m0s > ycsb.log 2>&1 returned
+  | stderr:
+  | Error: SSH_PROBLEM: exit status 255
+  | (1) SSH_PROBLEM
+  | Wraps: (2) Node 1. Command with error:
+  |   | ```
+  |   | rm -fr $(dirname {store-dir})/bench && tar xPf $(dirname {store-dir})/data.tar && ./pebble bench ycsb $(dirname {store-dir})/bench --workload=F --concurrency=256 --values=1024 --keys=zipf --initial-keys=0 --prepopulated-keys=10000000 --cache=4294967296 --duration=10m0s > ycsb.log 2>&1
+  |   | ```
+  | Wraps: (3) exit status 255
+  | Error types: (1) errors.SSH (2) *hintdetail.withDetail (3) *exec.ExitError
+  |
+  | stdout:
+  | nair-test: rm -fr $(dirname {store-dir......................................................................................................................................................................................................................................................................................................................................................................................................................................
+  |    1: 
+  | SSH_PROBLEM: exit status 255
+  |    2: 
+  | SSH_PROBLEM: exit status 255
+  |    3: 
+  | SSH_PROBLEM: exit status 255
+  |    4: 
+  | SSH_PROBLEM: exit status 255
+  |    5: 
+  | SSH_PROBLEM: exit status 255
+Wraps: (2) exit status 10
+Error types: (1) *cluster.WithCommandDetails (2) *exec.ExitError
+05:32:17 z_test_impl.go:310: test failure: 	pebble.go:50,pebble.go:76,pebble.go:115,z_test_runner.go:765: /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- rm -fr $(dirname {store-dir})/bench && tar xPf $(dirname {store-dir})/data.tar && ./pebble bench ycsb $(dirname {store-dir})/bench --workload=F --concurrency=256 --values=1024 --keys=zipf --initial-keys=0 --prepopulated-keys=10000000 --cache=4294967296 --duration=10m0s > ycsb.log 2>&1 returned: exit status 10
+		(1) /Users/arjunnair/go/src/github.com/cockroachdb/cockroach/bin/roachprod run nair-test:1-5 -- rm -fr $(dirname {store-dir})/bench && tar xPf $(dirname {store-dir})/data.tar && ./pebble bench ycsb $(dirname {store-dir})/bench --workload=F --concurrency=256 --values=1024 --keys=zipf --initial-keys=0 --prepopulated-keys=10000000 --cache=4294967296 --duration=10m0s > ycsb.log 2>&1 returned
+		  | stderr:
+		  | Error: SSH_PROBLEM: exit status 255
+		  | (1) SSH_PROBLEM
+		  | Wraps: (2) Node 1. Command with error:
+		  |   | ```
+		  |   | rm -fr $(dirname {store-dir})/bench && tar xPf $(dirname {store-dir})/data.tar && ./pebble bench ycsb $(dirname {store-dir})/bench --workload=F --concurrency=256 --values=1024 --keys=zipf --initial-keys=0 --prepopulated-keys=10000000 --cache=4294967296 --duration=10m0s > ycsb.log 2>&1
+		  |   | ```
+		  | Wraps: (3) exit status 255
+		  | Error types: (1) errors.SSH (2) *hintdetail.withDetail (3) *exec.ExitError
+		  |
+		  | stdout:
+		  | nair-test: rm -fr $(dirname {store-dir......................................................................................................................................................................................................................................................................................................................................................................................................................................
+		  |    1: 
+		  | SSH_PROBLEM: exit status 255
+		  |    2: 
+		  | SSH_PROBLEM: exit status 255
+		  |    3: 
+		  | SSH_PROBLEM: exit status 255
+		  |    4: 
+		  | SSH_PROBLEM: exit status 255
+		  |    5: 
+		  | SSH_PROBLEM: exit status 255
+		Wraps: (2) exit status 10
+		Error types: (1) *cluster.WithCommandDetails (2) *exec.ExitError
+05:32:17 z_test_runner.go:778: tearing down after failure; see teardown.log
