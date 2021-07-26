@@ -124,9 +124,7 @@ ycsb/F/values=1024    5.67 ± 2%    5.67 ± 1%     ~     (p=1.000 n=5+5)
 ycsb/C/values=1024    0.00         0.00          ~     (all equal)
 ycsb/B/values=1024    19.5 ±11%    20.4 ± 3%     ~     (p=0.151 n=5+5)
 
-- Since the benchmark numbers were lower than the initial comparison of
-  rtc_off vs rtc_base, we re-run rtc_base, and compare it with our fix.
-
+rtc_base vs the fix
 arjunnair@Arjuns-MacBook-Pro rtc_wide % benchstat stat_base stat_wide
 name                old ops/sec  new ops/sec  delta
 ycsb/A/values=1024   79.7k ± 2%   79.4k ± 1%   ~     (p=0.690 n=5+5)
@@ -162,6 +160,81 @@ ycsb/D/values=1024    37.8 ± 6%    39.5 ± 6%   ~     (p=0.548 n=5+5)
 ycsb/F/values=1024    5.66 ± 0%    5.67 ± 1%   ~     (p=0.889 n=5+5)
 ycsb/C/values=1024    0.00         0.00        ~     (all equal)
 ycsb/B/values=1024    19.8 ± 7%    20.4 ± 3%   ~     (p=0.548 n=5+5)
+```
+
+2. skip compaction if no overlap, or file changed.
+```
+rtc_off vs the fix
+name                old ops/sec  new ops/sec  delta
+ycsb/A/values=1024   80.8k ± 4%   79.9k ± 2%     ~     (p=0.548 n=5+5)
+ycsb/D/values=1024   87.5k ± 6%   86.6k ± 6%     ~     (p=1.000 n=5+5)
+ycsb/F/values=1024   62.9k ± 2%   62.6k ± 1%     ~     (p=0.548 n=5+5)
+ycsb/C/values=1024    308k ± 6%    349k ± 5%  +13.16%  (p=0.008 n=5+5)
+ycsb/B/values=1024    209k ± 8%    205k ± 8%     ~     (p=1.000 n=5+5)
+
+name                old read     new read     delta
+ycsb/A/values=1024   95.2G ± 1%   96.0G ± 0%   +0.84%  (p=0.016 n=5+5)
+ycsb/D/values=1024   51.2G ± 2%   50.9G ± 5%     ~     (p=0.841 n=5+5)
+ycsb/F/values=1024   75.4G ± 1%   75.0G ± 2%     ~     (p=0.548 n=5+5)
+ycsb/C/values=1024   41.7G ± 4%   54.4G ± 4%  +30.35%  (p=0.008 n=5+5)
+ycsb/B/values=1024   60.8G ± 1%   61.3G ± 3%     ~     (p=0.222 n=5+5)
+
+name                old write    new write    delta
+ycsb/A/values=1024    110G ± 1%    111G ± 1%     ~     (p=0.151 n=5+5)
+ycsb/D/values=1024   54.0G ± 2%   53.6G ± 5%     ~     (p=0.841 n=5+5)
+ycsb/F/values=1024    116G ± 1%    115G ± 1%     ~     (p=0.310 n=5+5)
+ycsb/C/values=1024   41.7G ± 4%   54.3G ± 4%  +30.36%  (p=0.008 n=5+5)
+ycsb/B/values=1024   65.1G ± 1%   65.5G ± 4%     ~     (p=0.222 n=5+5)
+
+name                old r-amp    new r-amp    delta
+ycsb/A/values=1024    22.3 ±11%    22.0 ± 3%     ~     (p=1.000 n=5+5)
+ycsb/D/values=1024    18.1 ± 4%    18.1 ± 6%     ~     (p=1.000 n=5+5)
+ycsb/F/values=1024    0.00         0.00          ~     (all equal)
+ycsb/C/values=1024    7.07 ± 5%    6.04 ± 5%  -14.54%  (p=0.008 n=5+5)
+ycsb/B/values=1024    10.3 ± 5%    10.2 ± 5%     ~     (p=1.000 n=5+5)
+
+name                old w-amp    new w-amp    delta
+ycsb/A/values=1024    8.38 ± 3%    8.46 ± 3%     ~     (p=0.452 n=5+5)
+ycsb/D/values=1024    38.0 ± 5%    38.0 ± 2%     ~     (p=1.000 n=5+5)
+ycsb/F/values=1024    5.65 ± 1%    5.65 ± 1%     ~     (p=1.000 n=5+5)
+ycsb/C/values=1024    0.00         0.00          ~     (all equal)
+ycsb/B/values=1024    19.2 ± 7%    19.6 ± 5%     ~     (p=0.548 n=5+5)
+
+rtc_base vs the fix
+name                old ops/sec  new ops/sec  delta
+ycsb/A/values=1024   79.1k ± 3%   79.9k ± 2%   ~     (p=0.310 n=5+5)
+ycsb/D/values=1024   80.8k ±10%   86.6k ± 6%   ~     (p=0.056 n=5+5)
+ycsb/F/values=1024   61.8k ± 2%   62.6k ± 1%   ~     (p=0.151 n=5+5)
+ycsb/C/values=1024    338k ± 6%    349k ± 5%   ~     (p=0.310 n=5+5)
+ycsb/B/values=1024    200k ± 6%    205k ± 8%   ~     (p=0.841 n=5+5)
+
+name                old read     new read     delta
+ycsb/A/values=1024   96.1G ± 1%   96.0G ± 0%   ~     (p=0.841 n=5+5)
+ycsb/D/values=1024   49.4G ± 3%   50.9G ± 5%   ~     (p=0.421 n=5+5)
+ycsb/F/values=1024   74.5G ± 2%   75.0G ± 2%   ~     (p=0.548 n=5+5)
+ycsb/C/values=1024   54.6G ± 4%   54.4G ± 4%   ~     (p=1.000 n=5+5)
+ycsb/B/values=1024   61.4G ± 4%   61.3G ± 3%   ~     (p=1.000 n=5+5)
+
+name                old write    new write    delta
+ycsb/A/values=1024    111G ± 1%    111G ± 1%   ~     (p=0.841 n=5+5)
+ycsb/D/values=1024   51.9G ± 3%   53.6G ± 5%   ~     (p=0.222 n=5+5)
+ycsb/F/values=1024    114G ± 2%    115G ± 1%   ~     (p=0.690 n=5+5)
+ycsb/C/values=1024   54.5G ± 4%   54.3G ± 4%   ~     (p=1.000 n=5+5)
+ycsb/B/values=1024   65.5G ± 4%   65.5G ± 4%   ~     (p=0.841 n=5+5)
+
+name                old r-amp    new r-amp    delta
+ycsb/A/values=1024    23.0 ± 8%    22.0 ± 3%   ~     (p=0.310 n=5+5)
+ycsb/D/values=1024    19.5 ± 8%    18.1 ± 6%   ~     (p=0.095 n=5+5)
+ycsb/F/values=1024    0.00         0.00        ~     (all equal)
+ycsb/C/values=1024    6.21 ± 8%    6.04 ± 5%   ~     (p=0.690 n=5+5)
+ycsb/B/values=1024    10.4 ± 6%    10.2 ± 5%   ~     (p=0.690 n=5+5)
+
+name                old w-amp    new w-amp    delta
+ycsb/A/values=1024    8.62 ± 3%    8.46 ± 3%   ~     (p=0.238 n=5+5)
+ycsb/D/values=1024    39.6 ± 7%    38.0 ± 2%   ~     (p=0.222 n=5+5)
+ycsb/F/values=1024    5.67 ± 1%    5.65 ± 1%   ~     (p=0.730 n=5+5)
+ycsb/C/values=1024    0.00         0.00        ~     (all equal)
+ycsb/B/values=1024    20.1 ± 5%    19.6 ± 5%   ~     (p=0.548 n=5+5)
 ```
 
 3.
@@ -213,85 +286,80 @@ ycsb/B/values=1024    11.9 ± 3%    12.8 ± 5%  +6.92%  (p=0.016 n=5+5)
 
 4.
 - `rtc_off` vs `fix_ratio`
-- Skipping compaction if level score is less than some number.
+- Skipping compaction if relative ratio of two levels is less than
+  some number.
 
-- 0.5
+- 1/2
 ```
+rtc_off vs the fix
 name                old ops/sec  new ops/sec  delta
-ycsb/E/values=1024   43.0k ±12%   42.7k ±12%    ~     (p=1.000 n=5+5)
-ycsb/A/values=1024   98.1k ± 1%   98.1k ± 3%    ~     (p=0.710 n=8+5)
-ycsb/D/values=1024    140k ±13%    138k ±11%    ~     (p=0.690 n=5+5)
-ycsb/F/values=1024   60.7k ± 1%   60.6k ± 2%    ~     (p=0.841 n=5+5)
-ycsb/C/values=1024    393k ± 9%    392k ± 9%    ~     (p=0.841 n=5+5)
-ycsb/B/values=1024    271k ± 7%    273k ± 9%    ~     (p=0.841 n=5+5)
+ycsb/A/values=1024   78.9k ± 2%   79.3k ± 2%     ~     (p=0.841 n=5+5)
+ycsb/D/values=1024   82.4k ±17%   84.0k ±16%     ~     (p=1.000 n=5+5)
+ycsb/F/values=1024   63.2k ± 1%   62.9k ± 1%     ~     (p=0.310 n=5+5)
+ycsb/C/values=1024    289k ±14%    333k ±20%     ~     (p=0.222 n=5+5)
+ycsb/B/values=1024    193k ±13%    196k ±12%     ~     (p=0.690 n=5+5)
 
 name                old read     new read     delta
-ycsb/E/values=1024   54.9G ± 5%   55.0G ± 6%    ~     (p=1.000 n=5+5)
-ycsb/A/values=1024    195G ± 1%    196G ± 2%    ~     (p=0.623 n=8+5)
-ycsb/D/values=1024   96.5G ± 8%   96.1G ± 6%    ~     (p=1.000 n=5+5)
-ycsb/F/values=1024    148G ± 2%    148G ± 1%    ~     (p=0.690 n=5+5)
-ycsb/C/values=1024   41.3G ± 1%   42.8G ± 3%  +3.70%  (p=0.032 n=5+5)
-ycsb/B/values=1024   94.9G ± 4%   99.4G ± 5%    ~     (p=0.222 n=5+5)
+ycsb/A/values=1024   96.7G ± 1%   96.3G ± 1%     ~     (p=0.548 n=5+5)
+ycsb/D/values=1024   49.8G ± 8%   49.6G ±10%     ~     (p=1.000 n=5+5)
+ycsb/F/values=1024   75.4G ± 1%   75.0G ± 1%     ~     (p=0.222 n=5+5)
+ycsb/C/values=1024   42.4G ± 3%   53.9G ± 4%  +27.33%  (p=0.008 n=5+5)
+ycsb/B/values=1024   59.4G ± 4%   60.2G ± 4%     ~     (p=0.548 n=5+5)
 
 name                old write    new write    delta
-ycsb/E/values=1024   57.6G ± 5%   57.7G ± 6%    ~     (p=1.000 n=5+5)
-ycsb/A/values=1024    230G ± 1%    231G ± 2%    ~     (p=0.623 n=8+5)
-ycsb/D/values=1024    105G ± 9%    105G ± 7%    ~     (p=1.000 n=5+5)
-ycsb/F/values=1024    226G ± 1%    226G ± 2%    ~     (p=0.690 n=5+5)
-ycsb/C/values=1024   41.3G ± 1%   42.8G ± 3%  +3.70%  (p=0.032 n=5+5)
-ycsb/B/values=1024    105G ± 5%    110G ± 5%    ~     (p=0.222 n=5+5)
+ycsb/A/values=1024    111G ± 1%    111G ± 1%     ~     (p=1.000 n=5+5)
+ycsb/D/values=1024   52.4G ± 8%   52.3G ±10%     ~     (p=1.000 n=5+5)
+ycsb/F/values=1024    116G ± 1%    115G ± 1%     ~     (p=0.310 n=5+5)
+ycsb/C/values=1024   42.3G ± 3%   53.9G ± 4%  +27.34%  (p=0.008 n=5+5)
+ycsb/B/values=1024   63.3G ± 5%   64.2G ± 5%     ~     (p=0.548 n=5+5)
 
 name                old r-amp    new r-amp    delta
-ycsb/E/values=1024    17.1 ± 9%    16.9 ± 8%    ~     (p=0.841 n=5+5)
-ycsb/A/values=1024    13.5 ± 3%    12.9 ± 4%    ~     (p=0.082 n=8+5)
-ycsb/D/values=1024    10.2 ± 6%    10.2 ± 6%    ~     (p=1.000 n=5+5)
-ycsb/F/values=1024    0.00         0.00         ~     (all equal)
-ycsb/C/values=1024    5.20 ± 2%    5.20 ± 2%    ~     (p=0.881 n=5+5)
-ycsb/B/values=1024    7.53 ± 1%    7.16 ± 4%  -4.96%  (p=0.016 n=5+5)
+ycsb/A/values=1024    21.1 ± 4%    20.8 ± 8%     ~     (p=0.548 n=5+5)
+ycsb/D/values=1024    18.8 ±12%    18.5 ±11%     ~     (p=0.889 n=5+5)
+ycsb/F/values=1024    0.00         0.00          ~     (all equal)
+ycsb/C/values=1024    7.36 ± 8%    6.28 ±16%     ~     (p=0.095 n=5+5)
+ycsb/B/values=1024    10.8 ± 7%    10.4 ± 7%     ~     (p=0.421 n=5+5)
 
 name                old w-amp    new w-amp    delta
-ycsb/E/values=1024    41.3 ± 8%    41.7 ± 9%    ~     (p=0.841 n=5+5)
-ycsb/A/values=1024    7.19 ± 1%    7.22 ± 1%    ~     (p=0.648 n=8+5)
-ycsb/D/values=1024    23.3 ± 5%    23.4 ± 4%    ~     (p=0.548 n=5+5)
-ycsb/F/values=1024    5.72 ± 1%    5.72 ± 1%    ~     (p=1.000 n=5+5)
-ycsb/C/values=1024    0.00         0.00         ~     (all equal)
-ycsb/B/values=1024    11.9 ± 3%    12.4 ± 5%  +3.92%  (p=0.032 n=5+5)
-```
+ycsb/A/values=1024    8.68 ± 1%    8.48 ± 2%     ~     (p=0.087 n=5+5)
+ycsb/D/values=1024    39.5 ±11%    38.5 ±10%     ~     (p=1.000 n=5+5)
+ycsb/F/values=1024    5.63 ± 1%    5.63 ± 1%     ~     (p=1.000 n=5+5)
+ycsb/C/values=1024    0.00         0.00          ~     (all equal)
+ycsb/B/values=1024    20.3 ±10%    20.3 ±10%     ~     (p=0.968 n=5+5)
 
-- 0.25.
-```
+rtc_base vs the fix
 name                old ops/sec  new ops/sec  delta
-ycsb/A/values=1024   78.9k ± 2%   79.0k ± 5%   ~     (p=0.310 n=5+5)
-ycsb/D/values=1024   82.4k ±17%   85.4k ±15%   ~     (p=0.841 n=5+5)
-ycsb/F/values=1024   63.2k ± 1%   62.8k ± 1%   ~     (p=0.310 n=5+5)
-ycsb/C/values=1024    289k ±14%    295k ±15%   ~     (p=0.690 n=5+5)
-ycsb/B/values=1024    193k ±13%    200k ±17%   ~     (p=0.690 n=5+5)
+ycsb/A/values=1024   77.5k ± 5%   79.3k ± 2%   ~     (p=0.421 n=5+5)
+ycsb/D/values=1024   81.0k ±14%   84.0k ±16%   ~     (p=0.421 n=5+5)
+ycsb/F/values=1024   63.2k ± 1%   62.9k ± 1%   ~     (p=0.548 n=5+5)
+ycsb/C/values=1024    325k ±11%    333k ±20%   ~     (p=0.690 n=5+5)
+ycsb/B/values=1024    189k ± 9%    196k ±12%   ~     (p=0.548 n=5+5)
 
 name                old read     new read     delta
-ycsb/A/values=1024   96.7G ± 1%   96.2G ± 1%   ~     (p=0.548 n=5+5)
-ycsb/D/values=1024   49.8G ± 8%   50.2G ± 6%   ~     (p=1.000 n=5+5)
-ycsb/F/values=1024   75.4G ± 1%   75.3G ± 1%   ~     (p=0.690 n=5+5)
-ycsb/C/values=1024   42.4G ± 3%   41.9G ± 7%   ~     (p=0.310 n=5+5)
-ycsb/B/values=1024   59.4G ± 4%   60.6G ± 4%   ~     (p=0.310 n=5+5)
+ycsb/A/values=1024   96.5G ± 1%   96.3G ± 1%   ~     (p=0.841 n=5+5)
+ycsb/D/values=1024   50.2G ± 7%   49.6G ±10%   ~     (p=0.841 n=5+5)
+ycsb/F/values=1024   75.3G ± 2%   75.0G ± 1%   ~     (p=0.548 n=5+5)
+ycsb/C/values=1024   54.9G ± 5%   53.9G ± 4%   ~     (p=0.690 n=5+5)
+ycsb/B/values=1024   60.8G ± 3%   60.2G ± 4%   ~     (p=0.841 n=5+5)
 
 name                old write    new write    delta
-ycsb/A/values=1024    111G ± 1%    111G ± 2%   ~     (p=0.690 n=5+5)
-ycsb/D/values=1024   52.4G ± 8%   52.9G ± 7%   ~     (p=0.841 n=5+5)
-ycsb/F/values=1024    116G ± 1%    116G ± 0%   ~     (p=0.548 n=5+5)
-ycsb/C/values=1024   42.3G ± 3%   41.9G ± 7%   ~     (p=0.310 n=5+5)
-ycsb/B/values=1024   63.3G ± 5%   64.8G ± 4%   ~     (p=0.421 n=5+5)
+ycsb/A/values=1024    111G ± 1%    111G ± 1%   ~     (p=1.000 n=5+5)
+ycsb/D/values=1024   52.7G ± 8%   52.3G ±10%   ~     (p=0.841 n=5+5)
+ycsb/F/values=1024    116G ± 1%    115G ± 1%   ~     (p=0.421 n=5+5)
+ycsb/C/values=1024   54.9G ± 5%   53.9G ± 4%   ~     (p=0.690 n=5+5)
+ycsb/B/values=1024   64.7G ± 3%   64.2G ± 5%   ~     (p=1.000 n=5+5)
 
 name                old r-amp    new r-amp    delta
-ycsb/A/values=1024    21.1 ± 4%    21.1 ± 9%   ~     (p=0.548 n=5+5)
-ycsb/D/values=1024    18.8 ±12%    18.2 ±11%   ~     (p=0.889 n=5+5)
+ycsb/A/values=1024    21.7 ± 6%    20.8 ± 8%   ~     (p=0.222 n=5+5)
+ycsb/D/values=1024    19.2 ± 9%    18.5 ±11%   ~     (p=0.421 n=5+5)
 ycsb/F/values=1024    0.00         0.00        ~     (all equal)
-ycsb/C/values=1024    7.36 ± 8%    7.25 ± 9%   ~     (p=0.881 n=5+5)
-ycsb/B/values=1024    10.8 ± 7%    10.2 ±12%   ~     (p=0.222 n=5+5)
+ycsb/C/values=1024    6.31 ± 8%    6.28 ±16%   ~     (p=0.841 n=5+5)
+ycsb/B/values=1024    10.7 ± 3%    10.4 ± 7%   ~     (p=0.595 n=5+5)
 
 name                old w-amp    new w-amp    delta
-ycsb/A/values=1024    8.68 ± 1%    8.63 ± 3%   ~     (p=0.460 n=5+5)
-ycsb/D/values=1024    39.5 ±11%    38.3 ±10%   ~     (p=0.690 n=5+5)
-ycsb/F/values=1024    5.63 ± 1%    5.65 ± 1%   ~     (p=0.460 n=5+5)
+ycsb/A/values=1024    8.64 ± 6%    8.48 ± 2%   ~     (p=0.151 n=5+5)
+ycsb/D/values=1024    40.1 ± 7%    38.5 ±10%   ~     (p=0.421 n=5+5)
+ycsb/F/values=1024    5.63 ± 1%    5.63 ± 1%   ~     (p=0.738 n=5+5)
 ycsb/C/values=1024    0.00         0.00        ~     (all equal)
-ycsb/B/values=1024    20.3 ±10%    20.1 ±17%   ~     (p=1.000 n=5+5)
-```
+ycsb/B/values=1024    21.1 ± 7%    20.3 ±10%   ~     (p=0.278 n=5+5)
+
